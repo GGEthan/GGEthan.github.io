@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Coding,POJ," />
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="题目链接 思路这道题目较易理解，大致思路就是寻找三个生理周期高峰出现在同一天的日期，除此之外题目中给了变量d，即相对于日期d的天数（当然，d可以小于三个周期的周期天数）。 暴力求解法 最容易想到的就是遍历每一天，直到找到符合要求的为止，最大不超过21252(三个周期的最小公倍数)中国剩余定理">
+<meta name="keywords" content="Coding,POJ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test_my_site">
-<meta property="og:url" content="http://yoursite.com/posts/1965421688/index.html">
+<meta property="og:title" content="POJ 1006 Biorhythms">
+<meta property="og:url" content="http://yoursite.com/posts/2811150533/index.html">
 <meta property="og:site_name" content="Charlotte">
+<meta property="og:description" content="题目链接 思路这道题目较易理解，大致思路就是寻找三个生理周期高峰出现在同一天的日期，除此之外题目中给了变量d，即相对于日期d的天数（当然，d可以小于三个周期的周期天数）。 暴力求解法 最容易想到的就是遍历每一天，直到找到符合要求的为止，最大不超过21252(三个周期的最小公倍数)中国剩余定理">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-25T03:39:58.865Z">
+<meta property="og:updated_time" content="2018-07-25T04:23:34.242Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test_my_site">
+<meta name="twitter:title" content="POJ 1006 Biorhythms">
+<meta name="twitter:description" content="题目链接 思路这道题目较易理解，大致思路就是寻找三个生理周期高峰出现在同一天的日期，除此之外题目中给了变量d，即相对于日期d的天数（当然，d可以小于三个周期的周期天数）。 暴力求解法 最容易想到的就是遍历每一天，直到找到符合要求的为止，最大不超过21252(三个周期的最小公倍数)中国剩余定理">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/posts/1965421688/"/>
+  <link rel="canonical" href="http://yoursite.com/posts/2811150533/"/>
 
 
 
 
 
-  <title>test_my_site | Charlotte</title>
+  <title>POJ 1006 Biorhythms | Charlotte</title>
   
 
 
@@ -302,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/1965421688/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/2811150533/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Gao Ge">
@@ -319,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">test_my_site</h1>
+          <h1 class="post-title" itemprop="name headline">POJ 1006 Biorhythms</h1>
         
 
         <div class="post-meta">
@@ -331,8 +335,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-16T15:01:56+08:00">
-                2018-07-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T11:55:23+08:00">
+                2018-07-25
               </time>
             
 
@@ -342,6 +346,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Code-POJ/" itemprop="url" rel="index">
+                    <span itemprop="name">Code - POJ</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -350,8 +376,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/posts/1965421688/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/posts/1965421688/" itemprop="commentCount"></span>
+                <a href="/posts/2811150533/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/posts/2811150533/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,7 +404,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  128
                 </span>
               
 
@@ -415,7 +441,12 @@
       
 
       
-        
+        <p><a href="http://poj.org/problem?id=1006" target="_blank" rel="noopener">题目链接</a></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>这道题目较易理解，大致思路就是寻找三个生理周期高峰出现在同一天的日期，除此之外题目中给了变量<code>d</code>，即相对于日期<code>d</code>的天数（当然，<code>d</code>可以小于三个周期的周期天数）。</p>
+<h3 id="暴力求解法"><a href="#暴力求解法" class="headerlink" title="暴力求解法"></a>暴力求解法</h3><ul>
+<li>最容易想到的就是遍历每一天，直到找到符合要求的为止，最大不超过<code>21252</code>(三个周期的最小公倍数)<h3 id="中国剩余定理"><a href="#中国剩余定理" class="headerlink" title="中国剩余定理"></a>中国剩余定理</h3></li>
+</ul>
+
       
     </div>
     
@@ -435,7 +466,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://yoursite.com/posts/1965421688/" title="test_my_site">http://yoursite.com/posts/1965421688/</a>
+    <a href="http://yoursite.com/posts/2811150533/" title="POJ 1006 Biorhythms">http://yoursite.com/posts/2811150533/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -448,6 +479,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Coding/" rel="tag"># Coding</a>
+          
+            <a href="/tags/POJ/" rel="tag"># POJ</a>
+          
+        </div>
+      
 
       
       
@@ -457,8 +496,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/1243066710/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/posts/1965421688/" rel="next" title="test_my_site">
+                <i class="fa fa-chevron-left"></i> test_my_site
               </a>
             
           </div>
@@ -466,10 +505,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/2811150533/" rel="prev" title="POJ 1006 Biorhythms">
-                POJ 1006 Biorhythms <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -524,8 +559,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -585,6 +629,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力求解法"><span class="nav-number">1.1.</span> <span class="nav-text">暴力求解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中国剩余定理"><span class="nav-number">1.2.</span> <span class="nav-text">中国剩余定理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
