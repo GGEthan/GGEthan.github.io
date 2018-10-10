@@ -3,6 +3,27 @@
   
     
     <entry>
+      <title>Distribution Functions</title>
+      <link href="/posts/152544101/"/>
+      <url>/posts/152544101/</url>
+      <content type="html"><![CDATA[<h1 id="Discrete-Distribution"><a href="#Discrete-Distribution" class="headerlink" title="Discrete Distribution"></a>Discrete Distribution</h1><h2 id="Binomial-Distribution"><a href="#Binomial-Distribution" class="headerlink" title="Binomial Distribution"></a>Binomial Distribution</h2><ul><li>$f_{X}(k)=P(X=k)=\begin{cases}<br>\dbinom{n}{p}p^{k}(1-p)^{n-k},&amp; for\ k=0,1,\dots,n \cr 0, &amp; otherwise.\end{cases}$</li></ul><a id="more"></a><h2 id="Geometric-Distribution"><a href="#Geometric-Distribution" class="headerlink" title="Geometric Distribution"></a>Geometric Distribution</h2><ul><li>$f_{X}(k)=P(X=k)=\begin{cases}<br>p(1-p)^{k-1},&amp; for\ k=1,2,3,\dots\cr 0 &amp;otherwise.\end{cases}$</li></ul><h2 id="Negative-Binomial-Distribution"><a href="#Negative-Binomial-Distribution" class="headerlink" title="Negative Binomial Distribution"></a>Negative Binomial Distribution</h2><ul><li>$f_{X}(k)=P(X=k)=\begin{cases}<br>\tbinom{k-1}{r-1}p^{r}(1-p)^{k-r}, &amp;for\ k=1,2,3\dots\cr 0&amp;otherwise.\end{cases}$</li></ul><h2 id="Hypergeometric-Distribution"><a href="#Hypergeometric-Distribution" class="headerlink" title="Hypergeometric Distribution"></a>Hypergeometric Distribution</h2><ul><li>$f_{X}(k) = P(X=k)=\begin{cases}<br>\frac{\tbinom{r}{k}\tbinom{n-r}{m-k}}{\tbinom{n}{m}} &amp;for\ 0\leq k\leq r\cr 0 &amp;otherwise.\end{cases}$</li></ul><h2 id="Possion-Distribution"><a href="#Possion-Distribution" class="headerlink" title="Possion Distribution"></a>Possion Distribution</h2><ul><li>$P(X=k)=\frac{\lambda^{k}}{k!}e^{-\lambda},\quad k=0,1,2\dots$</li><li>Note that the Possion distribution can be derived as the <strong>limit of a binomial distribution</strong></li></ul><h1 id="Continuous-Distribution"><a href="#Continuous-Distribution" class="headerlink" title="Continuous Distribution"></a>Continuous Distribution</h1><h2 id="Uniform-Distribution"><a href="#Uniform-Distribution" class="headerlink" title="Uniform Distribution"></a>Uniform Distribution</h2><ul><li>$f_{X}(x)=\begin{cases}<br>\frac{1}{b-a} &amp;for\ a\leq x\leq b\cr 0 &amp;otherwise.\end{cases}$</li></ul><h2 id="Exponential-Distribution"><a href="#Exponential-Distribution" class="headerlink" title="Exponential Distribution"></a>Exponential Distribution</h2><ul><li>$f_{X}(x)=\begin{cases}<br>\lambda e^{-\lambda x}, &amp;for\ x\geq 0\cr 0 &amp;otherwize.\end{cases}$</li><li>often used to model <strong>lifetimes or waiting times</strong></li></ul><h2 id="Normal-Distribution"><a href="#Normal-Distribution" class="headerlink" title="Normal Distribution"></a>Normal Distribution</h2><ul><li>$f_{X}(x)=\begin{cases}<br>\frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^{2}/(2\sigma^{2})} &amp;for\ t\geq 0\cr 0 &amp;otherwise.\end{cases}$</li><li>$\mu$:mean</li><li>$\sigma$:standard deviation</li><li>Properties<ul><li>$X\sim N(\mu,\sigma^{2})$ and $Y=aX+b$, then $Y\sim N(a\mu+b,a^{2}\sigma^{2})$</li><li>Nornalization:$X\sim N(\mu,\sigma^{2})$, then $Z=\frac{X-\mu}{\sigma}\sim N(0,1)$</li></ul></li></ul><h2 id="Gamma-Distribution"><a href="#Gamma-Distribution" class="headerlink" title="Gamma Distribution"></a>Gamma Distribution</h2><ul><li>$g(t)=\begin{cases}\frac{\lambda^{\alpha}}{\Gamma(\alpha)}t^{\alpha-1}e^{-\lambda t},&amp;for\ t\geq 0\cr 0,&amp;otherwise.\end{cases}$<ul><li>$\Gamma(x)=\int^{\infty}_{0}u^{x-1}e^{u}dt,x&gt;0$</li><li>if a=1 the gamma density coincides with the exponential density</li><li>$\alpha$:shape parameter</li><li>$\lambda$:scale parameter</li></ul></li></ul>]]></content>
+      
+      <categories>
+          
+          <category> Mathematical Statistics and DataAnalysis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Statistics </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Redis设计与实现之数据结构</title>
       <link href="/posts/499093544/"/>
       <url>/posts/499093544/</url>
