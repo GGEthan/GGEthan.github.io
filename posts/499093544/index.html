@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3,880
+                  3,878
                 </span>
               
 
@@ -546,11 +546,11 @@
 </ul>
 </li>
 <li>兼容部分C字符串函数<ul>
-<li>这些API将SDS保存的数据的末尾设置为空字符，在buf分配空间时多分配一个字节容纳空字符，这是为了让保存文本数据的SDS可以重用一部分&lt;string.h&gt;库定义的函数。<ul>
+<li>这些API将SDS保存的数据的末尾设置为空字符，在buf分配空间时多分配一个字节容纳空字符，这是为了让保存文本数据的SDS可以重用一部分<string.h>库定义的函数。<ul>
 <li>重用strcasecmp，对比SDS字符串和另一个字符串</li>
 <li>利用strcat，将SDS字符串追加到C字符串之后。</li>
 </ul>
-</li>
+</string.h></li>
 </ul>
 </li>
 </ul>
@@ -753,9 +753,9 @@
 <li><code>contents</code>数组是整数集合的实现，每个项在数组中按值递增有序排列，且不包含任何重复项</li>
 <li><code>length</code>记录了集合元素数量，也即contents数组长度</li>
 <li>intset的contents数组并不保存任何int8_t类型的值，contents数组真正类型取决于encoding属性的值<ul>
-<li>INTEST_ENC_INT16–&gt;int16_t</li>
-<li>INTSET_ENC_INT32–&gt;int32_t</li>
-<li>INTSET_ENC_INT64–&gt;int64_t</li>
+<li>INTEST_ENC_INT16—&gt;int16_t</li>
+<li>INTSET_ENC_INT32—&gt;int32_t</li>
+<li>INTSET_ENC_INT64—&gt;int64_t</li>
 </ul>
 </li>
 </ul>
@@ -791,8 +791,7 @@
 </ul>
 </li>
 </ul>
-<p>##压缩列表</p>
-<ul>
+<h2 id="压缩列表"><a href="#压缩列表" class="headerlink" title="压缩列表"></a>压缩列表</h2><ul>
 <li>压缩列表是列表键和哈希键的底层实现之一<ul>
 <li>列表键只包含少量列表项<ul>
 <li>每个列表项是小整数值或长度较短的字符串</li>
@@ -1030,7 +1029,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1041,7 +1040,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -1052,7 +1051,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -1085,7 +1084,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-对象"><span class="nav-number">2.</span> <span class="nav-text">Redis 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单动态字符串"><span class="nav-number">3.</span> <span class="nav-text">简单动态字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-number">5.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字典的实现"><span class="nav-number">5.1.</span> <span class="nav-text">字典的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跳跃表"><span class="nav-number">6.</span> <span class="nav-text">跳跃表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数集合"><span class="nav-number">7.</span> <span class="nav-text">整数集合</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-对象"><span class="nav-number">2.</span> <span class="nav-text">Redis 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单动态字符串"><span class="nav-number">3.</span> <span class="nav-text">简单动态字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#链表"><span class="nav-number">4.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典"><span class="nav-number">5.</span> <span class="nav-text">字典</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字典的实现"><span class="nav-number">5.1.</span> <span class="nav-text">字典的实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#跳跃表"><span class="nav-number">6.</span> <span class="nav-text">跳跃表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数集合"><span class="nav-number">7.</span> <span class="nav-text">整数集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#压缩列表"><span class="nav-number">8.</span> <span class="nav-text">压缩列表</span></a></li></ol></div>
             
 
           </div>
@@ -1119,7 +1118,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">4.4k</span>
+    <span title="Site words total count">5.3k</span>
   
 </div>
 
