@@ -87,10 +87,13 @@
 <meta property="og:site_name" content="Charlotte">
 <meta property="og:description" content="SQL语言进阶之查询">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-19T12:00:08.836Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006F6RCUly1fwdsesez3dj30fo09jdgm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006F6RCUly1fwdsg89vpyj30n904774h.jpg">
+<meta property="og:updated_time" content="2018-10-19T12:08:14.937Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL(2)">
 <meta name="twitter:description" content="SQL语言进阶之查询">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/006F6RCUly1fwdsesez3dj30fo09jdgm.jpg">
 
 
 
@@ -628,7 +631,7 @@
 <h3 id="带有ANY（SOME）或ALL谓词的子查询"><a href="#带有ANY（SOME）或ALL谓词的子查询" class="headerlink" title="带有ANY（SOME）或ALL谓词的子查询"></a>带有ANY（SOME）或ALL谓词的子查询</h3><ul>
 <li>使用ANY或ALL谓词时则必须同时使用比较运算符</li>
 <li>类似全称量词与存在量词</li>
-<li><!--语义--></li>
+<li><img src="http://ww1.sinaimg.cn/large/006F6RCUly1fwdsesez3dj30fo09jdgm.jpg" alt=""></li>
 <li><p><strong>例</strong>：查询非计算机科学系比计算机科学系任意一个学生年龄小的学生姓名和年龄</p>
   <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> Sname,Sage <span class="keyword">FROM</span> Student </span><br><span class="line"><span class="keyword">Where</span> Sage &lt; <span class="keyword">ANY</span> (<span class="keyword">SELECT</span> Sage</span><br><span class="line">                <span class="keyword">FROM</span> Student</span><br><span class="line">                <span class="keyword">WHERE</span> Sdept=<span class="string">'CS'</span>)</span><br><span class="line"><span class="keyword">AND</span> Sdept &lt;&gt;<span class="string">'CS'</span></span><br></pre></td></tr></table></figure>
 <ul>
@@ -639,8 +642,7 @@
 <li><p>在上例中若是条件改成<code>所有</code>则谓词改为ALL，聚集函数改为MIN</p>
 </li>
 <li>事实上，用聚集函数实现子查询比用ANY或ALL谓词查询效率要高，其对应关系如下<ul>
-<li><!--贴图p109-->
-</li>
+<li><img src="http://ww1.sinaimg.cn/large/006F6RCUly1fwdsg89vpyj30n904774h.jpg" alt=""></li>
 </ul>
 </li>
 </ul>
