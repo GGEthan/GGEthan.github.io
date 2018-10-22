@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006F6RCUly1fwh97avw5yj30la0c7ad9.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006F6RCUly1fwh9n5vxr7j30fg05wgm0.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/006F6RCUly1fwhacr65d1j30k00a5gmx.jpg">
-<meta property="og:updated_time" content="2018-10-22T12:53:02.173Z">
+<meta property="og:updated_time" content="2018-10-22T15:04:48.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark处理系统">
 <meta name="twitter:description" content="介绍大数据处理框架Spark架构设计，执行流程及其容错措施">
@@ -490,18 +490,22 @@
 </li>
 <li>Spark基于<code>DAG</code>的任务调度执行机制，要优于MapReduce的迭代执行机制</li>
 </ul>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h2 id="RDD抽象"><a href="#RDD抽象" class="headerlink" title="RDD抽象"></a>RDD抽象</h2><ul>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="RDD"><a href="#RDD" class="headerlink" title="RDD"></a>RDD</h3><ul>
 <li>Resilient Distributed Dataset（弹性分布式数据集）<ul>
 <li>可恢复性</li>
 <li>分布式内存的一个抽象概念</li>
-<li>提供了一种高度受限的共享内存模型<h3 id="DAG"><a href="#DAG" class="headerlink" title="DAG"></a>DAG</h3></li>
+<li>提供了一种高度受限的共享内存模型</li>
 </ul>
 </li>
+</ul>
+<h3 id="DAG"><a href="#DAG" class="headerlink" title="DAG"></a>DAG</h3><ul>
 <li>Directed Acyclic Graph（有向无环图）</li>
 <li>反映RDD之间的依赖关系</li>
 </ul>
 <h3 id="Executor"><a href="#Executor" class="headerlink" title="Executor"></a>Executor</h3><ul>
-<li>是运行在工作节点（WorkerNode）上的一个进程，负责运行任务，并为应用程序存储数据<h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3></li>
+<li>是运行在工作节点（WorkerNode）上的一个进程，负责运行任务，并为应用程序存储数据</li>
+</ul>
+<h3 id="task"><a href="#task" class="headerlink" title="task"></a>task</h3><ul>
 <li>运行在Executor上的工作单元</li>
 </ul>
 <h3 id="job"><a href="#job" class="headerlink" title="job"></a>job</h3><ul>
@@ -532,11 +536,13 @@
 <li>在交互式场景中，预先将表缓存到该存储系统上，提高IO性能</li>
 </ul>
 </li>
-<li>负责任务执行的线程（Task）<h3 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h3></li>
+<li>负责任务执行的线程（Task）</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h3 id="Driver"><a href="#Driver" class="headerlink" title="Driver"></a>Driver</h3><ul>
 <li>每个应用的任务控制节点（Driver）</li>
 </ul>
 <h3 id="相互关系"><a href="#相互关系" class="headerlink" title="相互关系"></a>相互关系</h3><ul>
@@ -587,11 +593,11 @@
 <li>Spark<strong>运行过程独立于资源管理器</strong>，只要能够获取Executor进程并保持通信即可</li>
 <li>Task采用了 <strong>数据本地性</strong> 和 <strong>推测执行</strong>等优化机制<ul>
 <li>计算向数据靠拢</li>
-<li>推测执行将较慢的任务再次在其他节点启动<h2 id="RDD抽象-1"><a href="#RDD抽象-1" class="headerlink" title="RDD抽象"></a>RDD抽象</h2></li>
+<li>推测执行将较慢的任务再次在其他节点启动</li>
 </ul>
 </li>
 </ul>
-<h3 id="设计背景"><a href="#设计背景" class="headerlink" title="设计背景"></a>设计背景</h3><ul>
+<h2 id="RDD抽象"><a href="#RDD抽象" class="headerlink" title="RDD抽象"></a>RDD抽象</h2><h3 id="设计背景"><a href="#设计背景" class="headerlink" title="设计背景"></a>设计背景</h3><ul>
 <li>在许多迭代算法或交互式计算工具中，不同计算阶段之间重用中间结果</li>
 <li>MapReduce每次把中间结果写到HDFS中，加大IO开销</li>
 <li>RDD提供了抽象的数据结构，不同RDD之间的转换操作形成 <strong>依赖关系</strong>，实现 <strong>管道化</strong>，降低IO开销  </li>
@@ -681,9 +687,11 @@
 <li>多个父RDD的某一分区的所有key落在子RDD的同一个分区</li>
 </ul>
 </li>
-<li>对输入非协同划分：宽依赖<h4 id="Shuffle-vs-Pipeline"><a href="#Shuffle-vs-Pipeline" class="headerlink" title="Shuffle vs. Pipeline"></a>Shuffle vs. Pipeline</h4></li>
+<li>对输入非协同划分：宽依赖</li>
 </ul>
 </li>
+</ul>
+<h4 id="Shuffle-vs-Pipeline"><a href="#Shuffle-vs-Pipeline" class="headerlink" title="Shuffle vs. Pipeline"></a>Shuffle vs. Pipeline</h4><ul>
 <li>对于窄依赖，以流水线的方式计算所有分区</li>
 <li>对于宽依赖，常伴随shuffle操作，首先要计算好所有父分区数据</li>
 <li>Spark这种依赖关系设计，具有很好的容错性<ul>
@@ -713,9 +721,11 @@
 <li>特点<ul>
 <li>不是最终Stage</li>
 <li>输出一定要经过Shuffle过程，作为后续Stage输入</li>
-<li>JOb里可能有可能没有该类型Stage<h3 id="ResultStage"><a href="#ResultStage" class="headerlink" title="ResultStage"></a>ResultStage</h3></li>
+<li>JOb里可能有可能没有该类型Stage</li>
 </ul>
 </li>
+</ul>
+<h3 id="ResultStage"><a href="#ResultStage" class="headerlink" title="ResultStage"></a>ResultStage</h3><ul>
 <li>输入/输出<ul>
 <li>输入边界可以是从外部获取数据，也可以是另一个ShuffleMapStage的输出</li>
 <li>输出直接产生结果或存储</li>
@@ -766,18 +776,22 @@
 <li>举例<ul>
 <li>HadoopRDD</li>
 <li>FilteredRDD</li>
-<li>joinedRDD<h4 id="RDD存储机制"><a href="#RDD存储机制" class="headerlink" title="RDD存储机制"></a>RDD存储机制</h4></li>
+<li>joinedRDD</li>
 </ul>
 </li>
+</ul>
+<h4 id="RDD存储机制"><a href="#RDD存储机制" class="headerlink" title="RDD存储机制"></a>RDD存储机制</h4><ul>
 <li>RDD提供的持久化（缓存）接口<ul>
 <li>persist：对一个RDD标记为持久化</li>
 <li>cache<ul>
 <li>相当于persist(MEMORY_ONLY)</li>
 </ul>
 </li>
-<li>可以使用unpersist方法手动地把持久化的RDD从缓存中删除<h4 id="检查点机制"><a href="#检查点机制" class="headerlink" title="检查点机制"></a>检查点机制</h4></li>
+<li>可以使用unpersist方法手动地把持久化的RDD从缓存中删除</li>
 </ul>
 </li>
+</ul>
+<h4 id="检查点机制"><a href="#检查点机制" class="headerlink" title="检查点机制"></a>检查点机制</h4><ul>
 <li>前述机制的不足<ul>
 <li>Lineage可能非常长</li>
 <li>RDD存储机制主要面向本地磁盘的存储</li>
@@ -991,7 +1005,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-特点"><span class="nav-number">1.</span> <span class="nav-text">Spark 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-vs-Mapreduce"><span class="nav-number">2.</span> <span class="nav-text">Spark vs. Mapreduce</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-MapReduce-局限性"><span class="nav-number">2.1.</span> <span class="nav-text">Hadoop MapReduce 局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark-改进"><span class="nav-number">2.2.</span> <span class="nav-text">Spark 改进</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">3.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD抽象"><span class="nav-number">4.</span> <span class="nav-text">RDD抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DAG"><span class="nav-number">4.1.</span> <span class="nav-text">DAG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Executor"><span class="nav-number">4.2.</span> <span class="nav-text">Executor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#task"><span class="nav-number">4.3.</span> <span class="nav-text">task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#job"><span class="nav-number">4.4.</span> <span class="nav-text">job</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stage"><span class="nav-number">4.5.</span> <span class="nav-text">stage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构设计"><span class="nav-number">5.</span> <span class="nav-text">架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master（管理整个系统）"><span class="nav-number">5.1.</span> <span class="nav-text">Master（管理整个系统）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Worker（运行作业的工作节点）"><span class="nav-number">5.2.</span> <span class="nav-text">Worker（运行作业的工作节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Driver"><span class="nav-number">5.3.</span> <span class="nav-text">Driver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相互关系"><span class="nav-number">5.4.</span> <span class="nav-text">相互关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark架构图"><span class="nav-number">5.5.</span> <span class="nav-text">Spark架构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark工作流程"><span class="nav-number">6.</span> <span class="nav-text">Spark工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark运行基本流程"><span class="nav-number">6.1.</span> <span class="nav-text">Spark运行基本流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Driver向集群管理器申请资源"><span class="nav-number">6.1.1.</span> <span class="nav-text">Driver向集群管理器申请资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ClusterManager启动Executor"><span class="nav-number">6.1.2.</span> <span class="nav-text">ClusterManager启动Executor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Driver向Executor发送应用程序代码和文件"><span class="nav-number">6.1.3.</span> <span class="nav-text">Driver向Executor发送应用程序代码和文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Executor上执行Task"><span class="nav-number">6.1.4.</span> <span class="nav-text">Executor上执行Task</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark运行流程特点"><span class="nav-number">6.2.</span> <span class="nav-text">Spark运行流程特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD抽象-1"><span class="nav-number">7.</span> <span class="nav-text">RDD抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计背景"><span class="nav-number">7.1.</span> <span class="nav-text">设计背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">7.2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Distrubuted"><span class="nav-number">7.2.1.</span> <span class="nav-text">Distrubuted</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Immutable"><span class="nav-number">7.2.2.</span> <span class="nav-text">Immutable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resilient"><span class="nav-number">7.2.3.</span> <span class="nav-text">Resilient</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAG运算操作"><span class="nav-number">7.3.</span> <span class="nav-text">DAG运算操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Transformation"><span class="nav-number">7.3.1.</span> <span class="nav-text">Transformation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Action"><span class="nav-number">7.3.2.</span> <span class="nav-text">Action</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区别"><span class="nav-number">7.3.3.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运算操作API"><span class="nav-number">7.3.4.</span> <span class="nav-text">运算操作API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDDLineage"><span class="nav-number">7.4.</span> <span class="nav-text">RDDLineage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDD特性"><span class="nav-number">7.5.</span> <span class="nav-text">RDD特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDD依赖关系"><span class="nav-number">7.6.</span> <span class="nav-text">RDD依赖关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Shuffle-vs-Pipeline"><span class="nav-number">7.6.1.</span> <span class="nav-text">Shuffle vs. Pipeline</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAG-Stage划分"><span class="nav-number">7.7.</span> <span class="nav-text">DAG Stage划分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具体划分方法"><span class="nav-number">7.7.1.</span> <span class="nav-text">具体划分方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">7.7.2.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stage-类型"><span class="nav-number">8.</span> <span class="nav-text">Stage 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ShuffleMapStage"><span class="nav-number">8.1.</span> <span class="nav-text">ShuffleMapStage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResultStage"><span class="nav-number">8.2.</span> <span class="nav-text">ResultStage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DAG运行过程"><span class="nav-number">9.</span> <span class="nav-text">DAG运行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-Shuffle-pipeline"><span class="nav-number">10.</span> <span class="nav-text">Spark Shuffle/pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容错性"><span class="nav-number">11.</span> <span class="nav-text">容错性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master-故障"><span class="nav-number">11.1.</span> <span class="nav-text">Master 故障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Worker-故障"><span class="nav-number">11.2.</span> <span class="nav-text">Worker 故障</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lineage机制"><span class="nav-number">11.2.1.</span> <span class="nav-text">Lineage机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD存储机制"><span class="nav-number">11.2.2.</span> <span class="nav-text">RDD存储机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查点机制"><span class="nav-number">11.2.3.</span> <span class="nav-text">检查点机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark运行示例"><span class="nav-number">12.</span> <span class="nav-text">Spark运行示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#reducebykey"><span class="nav-number">12.1.</span> <span class="nav-text">reducebykey</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-特点"><span class="nav-number">1.</span> <span class="nav-text">Spark 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-vs-Mapreduce"><span class="nav-number">2.</span> <span class="nav-text">Spark vs. Mapreduce</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-MapReduce-局限性"><span class="nav-number">2.1.</span> <span class="nav-text">Hadoop MapReduce 局限性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark-改进"><span class="nav-number">2.2.</span> <span class="nav-text">Spark 改进</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">3.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDD"><span class="nav-number">3.1.</span> <span class="nav-text">RDD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAG"><span class="nav-number">3.2.</span> <span class="nav-text">DAG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Executor"><span class="nav-number">3.3.</span> <span class="nav-text">Executor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#task"><span class="nav-number">3.4.</span> <span class="nav-text">task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#job"><span class="nav-number">3.5.</span> <span class="nav-text">job</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stage"><span class="nav-number">3.6.</span> <span class="nav-text">stage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构设计"><span class="nav-number">4.</span> <span class="nav-text">架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master（管理整个系统）"><span class="nav-number">4.1.</span> <span class="nav-text">Master（管理整个系统）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Worker（运行作业的工作节点）"><span class="nav-number">4.2.</span> <span class="nav-text">Worker（运行作业的工作节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Driver"><span class="nav-number">4.3.</span> <span class="nav-text">Driver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相互关系"><span class="nav-number">4.4.</span> <span class="nav-text">相互关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark架构图"><span class="nav-number">4.5.</span> <span class="nav-text">Spark架构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark工作流程"><span class="nav-number">5.</span> <span class="nav-text">Spark工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark运行基本流程"><span class="nav-number">5.1.</span> <span class="nav-text">Spark运行基本流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Driver向集群管理器申请资源"><span class="nav-number">5.1.1.</span> <span class="nav-text">Driver向集群管理器申请资源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ClusterManager启动Executor"><span class="nav-number">5.1.2.</span> <span class="nav-text">ClusterManager启动Executor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Driver向Executor发送应用程序代码和文件"><span class="nav-number">5.1.3.</span> <span class="nav-text">Driver向Executor发送应用程序代码和文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Executor上执行Task"><span class="nav-number">5.1.4.</span> <span class="nav-text">Executor上执行Task</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark运行流程特点"><span class="nav-number">5.2.</span> <span class="nav-text">Spark运行流程特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RDD抽象"><span class="nav-number">6.</span> <span class="nav-text">RDD抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计背景"><span class="nav-number">6.1.</span> <span class="nav-text">设计背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">6.2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Distrubuted"><span class="nav-number">6.2.1.</span> <span class="nav-text">Distrubuted</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Immutable"><span class="nav-number">6.2.2.</span> <span class="nav-text">Immutable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resilient"><span class="nav-number">6.2.3.</span> <span class="nav-text">Resilient</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAG运算操作"><span class="nav-number">6.3.</span> <span class="nav-text">DAG运算操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Transformation"><span class="nav-number">6.3.1.</span> <span class="nav-text">Transformation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Action"><span class="nav-number">6.3.2.</span> <span class="nav-text">Action</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区别"><span class="nav-number">6.3.3.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运算操作API"><span class="nav-number">6.3.4.</span> <span class="nav-text">运算操作API</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDDLineage"><span class="nav-number">6.4.</span> <span class="nav-text">RDDLineage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDD特性"><span class="nav-number">6.5.</span> <span class="nav-text">RDD特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RDD依赖关系"><span class="nav-number">6.6.</span> <span class="nav-text">RDD依赖关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Shuffle-vs-Pipeline"><span class="nav-number">6.6.1.</span> <span class="nav-text">Shuffle vs. Pipeline</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DAG-Stage划分"><span class="nav-number">6.7.</span> <span class="nav-text">DAG Stage划分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#具体划分方法"><span class="nav-number">6.7.1.</span> <span class="nav-text">具体划分方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#示例"><span class="nav-number">6.7.2.</span> <span class="nav-text">示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stage-类型"><span class="nav-number">7.</span> <span class="nav-text">Stage 类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ShuffleMapStage"><span class="nav-number">7.1.</span> <span class="nav-text">ShuffleMapStage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResultStage"><span class="nav-number">7.2.</span> <span class="nav-text">ResultStage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DAG运行过程"><span class="nav-number">8.</span> <span class="nav-text">DAG运行过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-Shuffle-pipeline"><span class="nav-number">9.</span> <span class="nav-text">Spark Shuffle/pipeline</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#容错性"><span class="nav-number">10.</span> <span class="nav-text">容错性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master-故障"><span class="nav-number">10.1.</span> <span class="nav-text">Master 故障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Worker-故障"><span class="nav-number">10.2.</span> <span class="nav-text">Worker 故障</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lineage机制"><span class="nav-number">10.2.1.</span> <span class="nav-text">Lineage机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD存储机制"><span class="nav-number">10.2.2.</span> <span class="nav-text">RDD存储机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查点机制"><span class="nav-number">10.2.3.</span> <span class="nav-text">检查点机制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark运行示例"><span class="nav-number">11.</span> <span class="nav-text">Spark运行示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#reducebykey"><span class="nav-number">11.1.</span> <span class="nav-text">reducebykey</span></a></li></ol></li></ol></div>
             
 
           </div>
